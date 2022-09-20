@@ -1,0 +1,17 @@
+<h2>New website</h2>
+
+<%= form_with model: @website do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :url %><br>
+    <%= form.text_area :url %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
