@@ -1,8 +1,12 @@
 <h1>Websites</h1>
-
-<ul> 
+<table>
     <% @websites.each do |website| %>
-        <li><%= website.name %></li>
-        <li><%= website.url %></li>
+    <tr>
+        <td><%= website.id %></td>
+        <td><%= website.name %></td>
+        <td><%= website.url %></td>
+        <td><%= website.status %></td>
+        <td><%= website.last_checked_at %></td>
+    </tr>
     <% end %>
-</ul>
+</table>

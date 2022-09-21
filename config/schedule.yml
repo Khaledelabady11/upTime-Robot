@@ -1,0 +1,4 @@
+websites_worker:
+  cron: '* * * * *' 
+  class: "WebsitesStatusWorker"
+  queue: default
