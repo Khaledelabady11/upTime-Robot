@@ -1,0 +1,4 @@
+status_check:
+   cron: "*/1 * * * *"
+   class: "WebsiteStatusCheck"
+   queue: website

@@ -1,8 +1,10 @@
 <h1>Websites</h1>
 
-<ul> 
+<ul>
     <% @websites.each do |website| %>
         <li><%= website.name %></li>
         <li><%= website.url %></li>
+         <li><%= website.status %></li>
+
     <% end %>
 </ul>
