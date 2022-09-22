@@ -1,0 +1,5 @@
+# Create Schedule file
+
+schedule_job:
+  cron: "*/1 * * * *" # Run every minute
+  class: "WebsiteStatusWorker"
