@@ -14,6 +14,9 @@ gem 'sqlite3', '~> 1.4'
 
 gem 'sidekiq'
 gem 'sidekiq-cron', '~> 1.7.0'
+
+gem 'nokogiri'
+gem 'mechanize'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
