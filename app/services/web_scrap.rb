@@ -9,16 +9,10 @@ class WebScrap
 
   def perform
     puts @url
-
-    agent = Mechanize.new()
-    agent.follow_meta_refresh = true
-    page = agent.get(@url)
-    location=page.search('div#css-1nhiovu a').text.strip
-    @res=[]
-    @res << location
-
-    puts @res
-    # return scraped content list here
-    # add your logic
+    mechanize_agent = Mechanize.new
+    # mechanize_agent.redirection_limit = 4
+    mechanize_agent.user_agent_alias = 'Mac Safari'
+    page = mechanize_agent.get(@url)
+    page.search('.css-1nhiovu a')
   end
 end
