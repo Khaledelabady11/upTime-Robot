@@ -10,6 +10,14 @@ class WebScrap
   def perform
     puts @url
 
+    agent = Mechanize.new()
+    agent.follow_meta_refresh = true
+    page = agent.get(@url)
+    location=page.search('div#css-1nhiovu a').text.strip
+    @res=[]
+    @res << location
+
+    puts @res
     # return scraped content list here
     # add your logic
   end
