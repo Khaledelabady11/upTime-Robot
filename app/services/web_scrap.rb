@@ -20,10 +20,12 @@ class WebScrap
   def fetch_document
     mechanize_agent = Mechanize.new
     # mechanize_agent.redirection_limit = 4
-    mechanize_agent.user_agent_alias = 'Mac Safari'
+    # mechanize_agent.user_agent_alias = 'Mac Safari'
 
     @document = mechanize_agent.get(@url)
     @document.encoding = 'utf-8'
     @document
+    
   end
+
 end
