@@ -4,7 +4,7 @@ class GoogleScrape
         @mechanize = Mechanize.new
         @page = @mechanize.get(@url)
     end
-    
+
     def fetch_title
         @page.search('title').text.strip
     end
@@ -23,6 +23,20 @@ class GoogleScrape
         end
         @page.encoding = 'utf-8'
         @page
+    end
+
+    def links_click
+
+        @page = @mechanize.page.links.find { |l| l.text == 'Drive' }.click
+
+    end
+
+    def access_forms
+        # pp @page
+        google_form = @page.form('f')
+        google_form.q = 'ruby mechanize'
+        @page=google_form.submit
+        pp @page
     end
 
 end
