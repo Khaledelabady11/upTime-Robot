@@ -7,14 +7,23 @@
 # https://www.amazon.eg/dp/B07J9N9XNP/ref=s9_acsd_al_bw_c2_x_0_i?pf_rd_m=A1ZVRGNO5AYLOV&pf_rd_s=merchandised-search-5&pf_rd_r=RKY100M8R17J6B8NHNQF&pf_rd_t=101&pf_rd_p=10457d17-1234-47dc-b390-3d9c291a1770&pf_rd_i=21832872031&th=1
 
 class WebScrap
-  def initialize(url = 'https://www.amazon.eg/dp/B07J9N9XNP/ref=s9_acsd_al_bw_c2_x_0_i?pf_rd_m=A1ZVRGNO5AYLOV&pf_rd_s=merchandised-search-5&pf_rd_r=RKY100M8R17J6B8NHNQF&pf_rd_t=101&pf_rd_p=10457d17-1234-47dc-b390-3d9c291a1770&pf_rd_i=21832872031&th=1&language=ar_AE')
+  URL_REGEXP = %r{\A(http|https)://[a-z0-9]+([\-.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(/.*)?\z}ix
+
+  def initialize(url = 'https://www.amazon.eg/s?bbn=21832883031&rh=n%3A21832883031%2Cp_89%3AApple&pf_rd_i=21832883031&pf_rd_m=A1ZVRGNO5AYLOV&pf_rd_p=3791cc79-77bb-4e44-a238-b42dd45cafcd&pf_rd_r=NHASNM3YRNMD34G0YVN7&pf_rd_s=merchandised-search-14&pf_rd_t=101&ref=s9_acss_bw_cg_ATF1208_3a1_w')
     @url = url
   end
 
   def perform
     @document = fetch_document
-
+    byebug
     @document.search('#productTitle').text.strip
+  end
+
+  def fetch_product_links
+    links = @document.search '.a-link-normal .s-no-outline'
+    links = links.map(&:values).flatten.uniq
+    links.map { |item| 'https://www.amazon.eg' + item }
+    links.select { |url| url.match? URL_REGEXP }
   end
 
   def fetch_document
