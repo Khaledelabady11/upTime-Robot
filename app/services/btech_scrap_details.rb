@@ -23,7 +23,11 @@ class BtechScrapDetails
     end
 
     def fetch_product_images
-        images = @document.search('.MagicToolboxMainContainer img')
+        images.map { |image| image['src'] }
+    end
+
+    def fetch_product_description
+        @document.search('#accordion').text.strip
     end
   
     def fetch_document
